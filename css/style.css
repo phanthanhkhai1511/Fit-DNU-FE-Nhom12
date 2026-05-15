@@ -1,0 +1,55 @@
+/* Tùy chỉnh Font chữ (Tùy chọn, ở đây dùng mặc định của Bootstrap) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Hero Section (Banner) --- */
+.hero-section {
+    /* Đổi URL ảnh nền bằng ảnh liên quan đến dịch vụ của bạn */
+    background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+    height: 60vh;
+    min-height: 400px;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Card Dịch Vụ --- */
+.service-card {
+    transition: all 0.3s ease-in-out;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Hiệu ứng di chuột vào thẻ Card */
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+}
+
+.service-card img {
+    height: 220px;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+
+.service-card .card-title {
+    color: #0056b3;
+    font-weight: 700;
+}
+
+.price-tag {
+    font-size: 1.1rem;
+    color: #dc3545;
+    background-color: #ffeaea;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* Căn chỉnh icon input form */
+.input-group-text {
+    background-color: #f8f9fa;
+    color: #0d6efd;
+}
