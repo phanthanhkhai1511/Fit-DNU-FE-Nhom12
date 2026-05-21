@@ -1,5 +1,7 @@
-const API_URL_DATA = 'https://69fc383bfce564e259178147.mockapi.io/api/v1';
-const API_URL_BOOKING = 'https://6a05781faa826ca75c09e1f3.mockapi.io/api/v1';
+// 🌟 KHAI BÁO 3 LINK API RIÊNG BIỆT 
+const API_URL_SERVICES = 'https://69fc37acfce564e259177acf.mockapi.io/api/v1';
+const API_URL_TECHNICIANS = 'https://69fc37acfce564e259177acf.mockapi.io/api/v1'; // <-- Điền link chứa technicians vào đây
+const API_URL_BOOKINGS = 'https://6a05781faa826ca75c09e1f3.mockapi.io/api/v1';
 
 let servicesData = [];
 let techniciansData = [];
@@ -10,10 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchAllData() {
+    // 🌟 Sửa cách gán link: Gọi 3 biến API riêng cho từng fetch
     Promise.all([
-        fetch(`${API_URL_DATA}/services`).then(r => r.json()),
-        fetch(`${API_URL_DATA}/technicians`).then(r => r.json()),
-        fetch(`${API_URL_BOOKING}/bookings`).then(r => r.json())
+        fetch(`${API_URL_SERVICES}/services`).then(r => r.json()),
+        fetch(`${API_URL_TECHNICIANS}/technicians`).then(r => r.json()),
+        fetch(`${API_URL_BOOKINGS}/bookings`).then(r => r.json())
     ])
     .then(([services, technicians, bookings]) => {
         servicesData = services;

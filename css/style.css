@@ -1,55 +1,153 @@
-/* Tùy chỉnh Font chữ (Tùy chọn, ở đây dùng mặc định của Bootstrap) */
+/* --- Global Styles --- */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    /* Phông chữ mới */
+    color: #333;
+    scroll-behavior: smooth;
+    /* Cuộn mượt */
 }
 
-/* --- Hero Section (Banner) --- */
+/* Tăng độ đậm phông chữ */
+.fw-extrabold {
+    font-weight: 800;
+}
+
+.leading-tight {
+    line-height: 1.25;
+}
+
+/* Tông màu chủ đạo mới */
+:root {
+    --bs-primary: #1e40af;
+    /* Xanh Trust Blue sâu hơn */
+    --bs-primary-rgb: 30, 64, 175;
+    --bs-warning: #fbbf24;
+    /* Amber Yellow nổi bật */
+    --bs-dark: #1f2937;
+    /* Dark Gray chuyên nghiệp */
+}
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color: #1a368e;
+    border-color: #1a368e;
+}
+
+.text-primary {
+    color: var(--bs-primary) !important;
+}
+
+/* --- Navbar Nâng cấp --- */
+.navbar {
+    border-bottom: 3px solid var(--bs-warning);
+}
+
+.navbar-brand:hover {
+    color: var(--bs-warning);
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: color 0.2s;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: white !important;
+}
+
+/* --- Hero Section Nâng cấp --- */
 .hero-section {
-    /* Đổi URL ảnh nền bằng ảnh liên quan đến dịch vụ của bạn */
-    background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
-    height: 60vh;
-    min-height: 400px;
+    background: linear-gradient(rgba(10, 20, 40, 0.75), rgba(10, 20, 40, 0.9)),
+        url('https://images.unsplash.com/photo-1517646280699-10b71d46b738?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+    height: 75vh;
+    min-height: 500px;
 }
 
-.text-shadow {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+.hero-section .display-3 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Card Dịch Vụ --- */
+/* --- Thẻ Card Dịch Vụ - Nâng cấp "Thật" --- */
 .service-card {
     transition: all 0.3s ease-in-out;
     border: none;
-    border-radius: 12px;
+    border-radius: 15px;
     overflow: hidden;
 }
 
-/* Hiệu ứng di chuột vào thẻ Card */
+/* Hiệu ứng Scale & Shadow khi Hover */
 .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15) !important;
 }
 
-.service-card img {
-    height: 220px;
-    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+.service-card .card-img-top {
+    height: 240px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Phóng to ảnh nhẹ khi hover */
+.service-card:hover .card-img-top {
+    transform: scale(1.05);
 }
 
 .service-card .card-title {
-    color: #0056b3;
+    color: var(--bs-dark);
     font-weight: 700;
+    font-size: 1.3rem;
 }
 
+.service-card .card-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Nhãn giá đẹp mắt */
 .price-tag {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     color: #dc3545;
+    /* Màu đỏ */
     background-color: #ffeaea;
-    padding: 5px 12px;
-    border-radius: 20px;
-    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 25px;
 }
 
-/* Căn chỉnh icon input form */
-.input-group-text {
-    background-color: #f8f9fa;
-    color: #0d6efd;
+/* --- Modal Nâng cấp --- */
+.modal-content .input-group-text {
+    border-color: #ced4da;
+    color: #6c757d;
+}
+
+.modal-content .form-control {
+    border-color: #ced4da;
+    font-weight: 500;
+}
+
+.modal-content .form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(251, 191, 36, 0.25);
+    border-color: var(--bs-warning);
+}
+
+/* --- Footer Nâng cấp --- */
+.footer-links a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--bs-warning);
+    margin-left: 3px;
+}
+
+.footer-contact-info i {
+    width: 25px;
+    text-align: center;
 }
