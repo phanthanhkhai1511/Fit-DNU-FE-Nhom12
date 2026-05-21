@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Quản Lý Kỹ Thuật Viên</title>
+
+    <link rel="stylesheet" href="../css/admin-technicians.css" />
+  </head>
+
+  <body>
+    <section class="admin-technicians">
+      <h1>Quản Lý Kỹ Thuật Viên</h1>
+
+      <form id="technicianForm">
+        <input type="text" id="name" placeholder="Tên kỹ thuật viên" required />
+
+        <input type="text" id="specialty" placeholder="Chuyên môn" required />
+
+        <input type="text" id="phone" placeholder="Số điện thoại" required />
+
+        <input
+          type="number"
+          id="experience"
+          placeholder="Kinh nghiệm"
+          required
+        />
+
+        <input type="text" id="avatar" placeholder="Link ảnh" required />
+
+        <button type="submit">Thêm Kỹ Thuật Viên</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Ảnh</th>
+
+            <th>Tên</th>
+
+            <th>Chuyên môn</th>
+
+            <th>SĐT</th>
+
+            <th>Kinh nghiệm</th>
+
+            <th>Hành động</th>
+          </tr>
+        </thead>
+
+        <tbody id="technicianTableBody"></tbody>
+      </table>
+    </section>
+
+    <script type="module" src="../js/pages/admin-technicians.js"></script>
+  </body>
+</html>

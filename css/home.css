@@ -1,0 +1,347 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    overflow-x: hidden;
+
+    background: #f8f9fa;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    height: 100vh;
+
+    background:
+
+        linear-gradient(rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)),
+
+        url("https://images.unsplash.com/photo-1581578731548-c64695cc6952"
+        );
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+.hero-content {
+
+    max-width: 800px;
+
+    color: white;
+}
+
+.hero-content h1 {
+
+    font-size: 64px;
+
+    margin-bottom: 20px;
+
+    line-height: 1.2;
+}
+
+.hero-content p {
+
+    font-size: 24px;
+
+    margin-bottom: 40px;
+
+    color: #ddd;
+}
+
+.hero-content a {
+
+    display: inline-block;
+
+    padding: 16px 32px;
+
+    background: #007bff;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.hero-content a:hover {
+
+    background: #0056b3;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.services,
+.technicians {
+
+    width: 100%;
+
+    padding: 120px 60px;
+}
+
+.services h2,
+.technicians h2 {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+
+    font-size: 42px;
+
+    color: #222;
+}
+
+
+/* =========================
+   SERVICES GRID
+========================= */
+
+.service-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(320px, 1fr));
+
+    gap: 30px;
+
+    max-width: 1400px;
+
+    margin: auto;
+}
+
+
+/* =========================
+   TECHNICIANS GRID
+========================= */
+
+.technician-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(280px, 1fr));
+
+    gap: 30px;
+
+    max-width: 1400px;
+
+    margin: auto;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.service-card,
+.technician-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+
+    cursor: pointer;
+}
+
+.service-card:hover,
+.technician-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================
+   CARD IMAGES
+========================= */
+
+.service-card img,
+.technician-card img {
+
+    width: 100%;
+
+    height: 220px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.service-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    min-height: 420px;
+}
+
+.technician-card {
+
+    min-height: 380px;
+}
+
+.service-card h3,
+.technician-card h3 {
+
+    padding: 20px 20px 10px;
+
+    font-size: 22px;
+
+    color: #222;
+}
+
+.service-card p,
+.technician-card p {
+
+    padding: 0 20px 15px;
+
+    color: #666;
+
+    line-height: 1.6;
+}
+
+.service-card span {
+
+    display: block;
+
+    padding: 0 20px 25px;
+
+    color: #e63946;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    background: #111;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 40px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px) {
+
+    .hero-content h1 {
+
+        font-size: 42px;
+    }
+
+    .hero-content p {
+
+        font-size: 18px;
+    }
+
+    .services,
+    .technicians {
+
+        padding: 80px 20px;
+    }
+
+    .services h2,
+    .technicians h2 {
+
+        font-size: 32px;
+    }
+}
+
+.book-btn {
+
+    width: calc(100% - 40px);
+
+    margin: 0 20px 20px;
+
+    padding: 14px;
+
+    border: none;
+
+    background: #007bff;
+
+    color: white;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.book-btn:hover {
+
+    background: #0056b3;
+}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Đặt Lịch</title>
+
+    <link rel="stylesheet" href="../css/booking.css" />
+  </head>
+
+  <body>
+    <section class="booking-section">
+      <form id="bookingForm">
+        <h1>Đặt Lịch Sửa Chữa</h1>
+
+        <input type="text" id="customerName" placeholder="Họ và tên" required />
+
+        <input type="text" id="phone" placeholder="Số điện thoại" required />
+
+        <select id="serviceName" required>
+          <option value="">Chọn dịch vụ</option>
+        </select>
+
+        <select id="technicianName" required>
+          <option value="">Chọn kỹ thuật viên</option>
+        </select>
+
+        <input type="date" id="bookingDate" required />
+
+        <button type="submit">Đặt Lịch</button>
+      </form>
+    </section>
+
+    <script type="module" src="../js/pages/booking.js"></script>
+  </body>
+</html>

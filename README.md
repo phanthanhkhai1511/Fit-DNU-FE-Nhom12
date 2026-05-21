@@ -1,5 +1,8 @@
-# lớp 19-08 - nhóm 12
+# FixIt - Dịch Vụ Sửa Chữa Tại Nhà
 
-## Phan Thanh Khải 1971020237
+**Lớp 19-08 - Nhóm 12**
 
-## Lê Văn Tú 1971020476
+- Phan Thanh Khải (1971020237)
+- Lê Văn Tú (1971020476)
+
+---

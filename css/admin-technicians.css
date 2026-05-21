@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+}
+
+.admin-technicians {
+    padding: 40px;
+}
+
+.admin-technicians h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#technicianForm {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+#technicianForm input {
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+}
+
+#technicianForm button {
+    background: #007bff;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+
+    background: white;
+
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+
+    padding: 12px;
+
+    text-align: center;
+}
+
+th {
+    background: #007bff;
+
+    color: white;
+}
+
+td img {
+    width: 70px;
+
+    height: 70px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+.delete-btn {
+    background: red;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}

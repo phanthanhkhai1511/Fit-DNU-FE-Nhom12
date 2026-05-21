@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Quản Lý Dịch Vụ</title>
+
+    <link rel="stylesheet" href="../css/admin-services.css" />
+  </head>
+
+  <body>
+    <section class="admin-services">
+      <button id="logoutBtn">Đăng Xuất</button>
+
+      <h1>Quản Lý Dịch Vụ</h1>
+
+      <form id="serviceForm">
+        <input type="text" id="name" placeholder="Tên dịch vụ" required />
+
+        <input type="text" id="description" placeholder="Mô tả" required />
+
+        <input type="number" id="price" placeholder="Giá tiền" required />
+
+        <input type="text" id="image" placeholder="Link hình ảnh" required />
+
+        <button type="submit" id="submitBtn">Thêm Dịch Vụ</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Tên</th>
+
+            <th>Mô tả</th>
+
+            <th>Giá</th>
+
+            <th>Hình ảnh</th>
+
+            <th>Hành động</th>
+          </tr>
+        </thead>
+
+        <tbody id="serviceTableBody"></tbody>
+      </table>
+    </section>
+
+    <script type="module" src="../js/pages/admin-services.js"></script>
+  </body>
+</html>
