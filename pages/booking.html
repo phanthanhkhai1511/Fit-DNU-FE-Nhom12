@@ -2,36 +2,38 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Đặt Lịch</title>
 
     <link rel="stylesheet" href="../css/booking.css" />
   </head>
-
   <body>
-    <section class="booking-section">
-      <form id="bookingForm">
-        <h1>Đặt Lịch Sửa Chữa</h1>
+    <div class="booking-container">
+      <h1>Đặt Lịch Sửa Chữa</h1>
 
-        <input type="text" id="customerName" placeholder="Họ và tên" required />
+      <form id="bookingForm" class="booking-form">
+        <input type="text" id="name" placeholder="Họ tên" required />
 
         <input type="text" id="phone" placeholder="Số điện thoại" required />
 
-        <select id="serviceName" required>
+        <input type="text" id="address" placeholder="Địa chỉ" required />
+
+        <select id="service" required>
           <option value="">Chọn dịch vụ</option>
         </select>
 
-        <select id="technicianName" required>
+        <select id="technician" required>
           <option value="">Chọn kỹ thuật viên</option>
         </select>
 
-        <input type="date" id="bookingDate" required />
+        <input type="date" id="date" required />
+
+        <textarea id="note" placeholder="Ghi chú"></textarea>
 
         <button type="submit">Đặt Lịch</button>
       </form>
-    </section>
+    </div>
 
     <script type="module" src="../js/pages/booking.js"></script>
   </body>

@@ -170,4 +170,3 @@ window.goBooking = function(id){
 
 loadServices();
 
-loadTechnicians();

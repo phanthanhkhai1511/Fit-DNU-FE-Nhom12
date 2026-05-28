@@ -1,112 +1,193 @@
 import {
-  checkAdmin
-}
-from "../utils/auth.js";
-
-checkAdmin();
-
-
-import {
-
   getBookings,
-
-  deleteBooking,
-
-  updateBookingStatus,
-
+  updateBooking
 } from "../api/booking.api.js";
 
 const bookingTableBody =
-  document.querySelector(
-    "#bookingTableBody"
+  document.getElementById(
+    "bookingTableBody"
   );
 
-const renderBookings =
-  async () => {
+
+
+// =========================
+// RENDER BOOKINGS
+// =========================
+
+async function renderBookings() {
+
+  try {
 
     const bookings =
       await getBookings();
 
-    bookingTableBody.innerHTML =
-      bookings
-        .map(
-          (booking) => `
-      
+    bookingTableBody.innerHTML = "";
+
+
+
+    // KHÔNG CÓ BOOKING
+    if (bookings.length === 0) {
+
+      bookingTableBody.innerHTML = `
+        <tr>
+          <td colspan="7"
+              style="text-align:center;">
+              
+            Chưa có đơn đặt lịch nào
+
+          </td>
+        </tr>
+      `;
+
+      return;
+    }
+
+
+
+    // HIỂN THỊ BOOKINGS
+    bookings.forEach((booking) => {
+
+      bookingTableBody.innerHTML += `
+
+        <tr>
+
+          <td>
+            ${booking.customerName || ""}
+          </td>
+
+          <td>
+            ${booking.phone || ""}
+          </td>
+
+          <td>
+            ${booking.serviceName || ""}
+          </td>
+
+          <td>
+            ${booking.technicianName || ""}
+          </td>
+
+          <td>
+            ${booking.bookingDate || ""}
+          </td>
+
+          <td>
+
+            <span class="status
+              ${booking.status === "Hoàn thành"
+                ? "done"
+                : booking.status === "Đã xác nhận"
+                ? "confirm"
+                : "pending"
+              }
+            ">
+
+              ${booking.status || "Chờ xác nhận"}
+
+            </span>
+
+          </td>
+
+          <td class="actions">
+
+            <button
+              class="confirm-btn"
+              onclick="confirmBooking('${booking.id}')"
+            >
+              Xác nhận
+            </button>
+
+            <button
+              class="done-btn"
+              onclick="doneBooking('${booking.id}')"
+            >
+              Hoàn thành
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+    });
+
+  } catch (error) {
+
+    console.log(error);
+
+    bookingTableBody.innerHTML = `
       <tr>
-
-        <td>
-          ${booking.customerName}
-        </td>
-
-        <td>
-          ${booking.phone}
-        </td>
-
-        <td>
-          ${booking.serviceName}
-        </td>
-
-        <td>
-          ${booking.technicianName}
-        </td>
-
-        <td>
-          ${booking.bookingDate}
-        </td>
-
-        <td>
-          ${booking.status}
-        </td>
-
-        <td>
-
-          <button
-            class="status-btn"
-            onclick="handleStatus('${booking.id}')"
-          >
-            Xác nhận
-          </button>
-
-          <button
-            class="delete-btn"
-            onclick="handleDelete('${booking.id}')"
-          >
-            Xóa
-          </button>
+        <td colspan="7"
+            style="text-align:center;color:red;">
+          
+          Không thể tải dữ liệu
 
         </td>
-
       </tr>
-      
-      `
-        )
-        .join("");
-};
+    `;
+  }
+}
 
-window.handleDelete =
-  async (id) => {
 
-    const confirmDelete =
-      confirm(
-        "Bạn có chắc muốn xóa?"
+
+// =========================
+// XÁC NHẬN BOOKING
+// =========================
+
+window.confirmBooking =
+  async function (id) {
+
+    try {
+
+      await updateBooking(
+        id,
+        {
+          status: "Đã xác nhận"
+        }
       );
 
-    if (!confirmDelete) return;
+      alert("Đã xác nhận đơn!");
 
-    await deleteBooking(id);
+      renderBookings();
 
-    renderBookings();
-};
+    } catch (error) {
 
-window.handleStatus =
-  async (id) => {
+      console.log(error);
 
-    await updateBookingStatus(
-      id,
-      "confirmed"
-    );
+      alert("Lỗi xác nhận!");
+    }
+  };
 
-    renderBookings();
-};
+
+
+// =========================
+// HOÀN THÀNH BOOKING
+// =========================
+
+window.doneBooking =
+  async function (id) {
+
+    try {
+
+      await updateBooking(
+        id,
+        {
+          status: "Hoàn thành"
+        }
+      );
+
+      alert("Đã hoàn thành đơn!");
+
+      renderBookings();
+
+    } catch (error) {
+
+      console.log(error);
+
+      alert("Lỗi cập nhật!");
+    }
+  };
+
+
 
 renderBookings();

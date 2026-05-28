@@ -1,222 +1,253 @@
-const BOOKING_API =
-  "https://6a05781faa826ca75c09e1f3.mockapi.io/api/v1/bookings";
+import { CONFIG } from "../config/config.js";
 
-const SERVICE_API =
-  "https://69fc37acfce564e259177acf.mockapi.io/api/v1/services";
+import {
+  createBooking
+} from "../api/booking.api.js";
 
-const TECHNICIAN_API =
-  "https://69fc37acfce564e259177acf.mockapi.io/api/v1/technicians";
-
-
-/* =========================
-   GET URL PARAM
-========================= */
-
-const params =
-  new URLSearchParams(
-    window.location.search
-  );
-
-const serviceId =
-  params.get("id");
+import {
+  getCurrentUser
+} from "../utils/auth.js";
 
 
-/* =========================
-   ELEMENTS
-========================= */
-
-const bookingForm =
-  document.querySelector("#booking-form");
 
 const serviceSelect =
-  document.querySelector("#service");
+  document.getElementById("service");
 
 const technicianSelect =
-  document.querySelector("#technician");
+  document.getElementById("technician");
+
+const bookingForm =
+  document.getElementById("bookingForm");
 
 
-/* =========================
-   LOAD SERVICES
-========================= */
 
-async function loadServices(){
+const currentUser =
+  getCurrentUser();
 
-  try{
+
+
+// =========================
+// AUTO FILL USER
+// =========================
+
+if(currentUser){
+
+  document.getElementById("name").value =
+    currentUser.name || "";
+
+  document.getElementById("phone").value =
+    currentUser.phone || "";
+}
+
+
+
+// =========================
+// LOAD SERVICES
+// =========================
+
+async function loadServices() {
+
+  try {
 
     const response =
-      await fetch(SERVICE_API);
+      await fetch(CONFIG.SERVICES_API);
 
     const services =
       await response.json();
 
-    serviceSelect.innerHTML =
-      `<option value="">
+
+    serviceSelect.innerHTML = `
+      <option value="">
         Chọn dịch vụ
-      </option>`;
+      </option>
+    `;
+
 
     services.forEach(service => {
 
-      serviceSelect.innerHTML += `
+      const option =
+        document.createElement("option");
 
-        <option
-          value="${service.id}"
+      option.value =
+        service.name;
 
-          ${
-            service.id === serviceId
-            ? "selected"
-            : ""
-          }
+      option.textContent =
+        service.name;
 
-        >
-
-          ${service.name}
-
-        </option>
-
-      `;
+      serviceSelect.appendChild(option);
     });
 
-  }catch(error){
+  } catch (error) {
 
-    console.log(error);
+    console.log(
+      "Lỗi load services:",
+      error
+    );
   }
 }
 
 
-/* =========================
-   LOAD TECHNICIANS
-========================= */
 
-async function loadTechnicians(){
+// =========================
+// LOAD TECHNICIANS
+// =========================
 
-  try{
+async function loadTechnicians() {
+
+  try {
 
     const response =
-      await fetch(TECHNICIAN_API);
+      await fetch(CONFIG.TECHNICIANS_API);
 
     const technicians =
       await response.json();
 
-    technicianSelect.innerHTML =
-      `<option value="">
+
+    technicianSelect.innerHTML = `
+      <option value="">
         Chọn kỹ thuật viên
-      </option>`;
+      </option>
+    `;
+
 
     technicians.forEach(tech => {
 
-      technicianSelect.innerHTML += `
+      const option =
+        document.createElement("option");
 
-        <option value="${tech.id}">
+      option.value =
+        tech.name;
 
-          ${tech.name}
+      option.textContent =
+        tech.name;
 
-        </option>
-
-      `;
+      technicianSelect.appendChild(option);
     });
 
-  }catch(error){
+  } catch (error) {
 
-    console.log(error);
+    console.log(
+      "Lỗi load technicians:",
+      error
+    );
   }
 }
 
 
-/* =========================
-   SUBMIT BOOKING
-========================= */
+
+// =========================
+// SUBMIT BOOKING
+// =========================
 
 bookingForm.addEventListener(
   "submit",
-
-  async function(e){
+  async (e) => {
 
     e.preventDefault();
 
-    const user =
-      JSON.parse(
-        localStorage.getItem("user")
-      );
 
-    if(!user){
+    const customerName =
+      document.getElementById("name").value;
 
-      alert(
-        "Vui lòng đăng nhập!"
-      );
+    const phone =
+      document.getElementById("phone").value;
 
-      window.location.href =
-        "/pages/login.html";
+    const address =
+      document.getElementById("address").value;
+
+    const bookingDate =
+      document.getElementById("date").value;
+
+    const note =
+      document.getElementById("note").value;
+
+
+
+    // VALIDATE
+
+    if(!serviceSelect.value){
+
+      alert("Vui lòng chọn dịch vụ");
 
       return;
     }
 
+    if(!technicianSelect.value){
+
+      alert("Vui lòng chọn kỹ thuật viên");
+
+      return;
+    }
+
+
+
     const bookingData = {
 
-      customerName:
-        document.querySelector("#customer-name").value,
+      customerName,
 
-      phone:
-        document.querySelector("#phone").value,
+      phone,
 
-      address:
-        document.querySelector("#address").value,
+      address,
 
-      serviceId:
+      serviceName:
         serviceSelect.value,
 
-      technicianId:
+      technicianName:
         technicianSelect.value,
 
-      bookingDate:
-        document.querySelector("#booking-date").value,
+      bookingDate,
 
-      note:
-        document.querySelector("#note").value,
+      note,
 
-      userId:user.id,
-
-      status:"pending"
+      status:
+        "Chờ xác nhận"
     };
 
-    try{
 
-      await fetch(BOOKING_API,{
 
-        method:"POST",
+    try {
 
-        headers:{
-          "Content-Type":"application/json"
-        },
-
-        body:JSON.stringify(
-          bookingData
-        )
-      });
+      await createBooking(
+        bookingData
+      );
 
       alert(
         "Đặt lịch thành công!"
       );
 
+
       bookingForm.reset();
 
-      window.location.href =
-        "/index.html";
 
-    }catch(error){
+
+      // AUTO FILL LẠI USER
+
+      if(currentUser){
+
+        document.getElementById("name").value =
+          currentUser.name || "";
+
+        document.getElementById("phone").value =
+          currentUser.phone || "";
+      }
+
+
+    } catch (error) {
 
       console.log(error);
 
       alert(
-        "Có lỗi xảy ra!"
+        "Đặt lịch thất bại!"
       );
     }
-  }
-);
+
+});
 
 
-/* =========================
-   INIT
-========================= */
+
+// =========================
+// INIT
+// =========================
 
 loadServices();
 
