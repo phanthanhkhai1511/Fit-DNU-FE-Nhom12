@@ -2,6 +2,10 @@ import {
   registerUser
 } from "../api/auth.api.js";
 
+import {
+  showToast
+} from "../utils/toast.js";
+
 const registerForm =
   document.querySelector(
     "#registerForm"
@@ -34,15 +38,33 @@ registerForm.addEventListener(
       role: "user",
     };
 
-    await registerUser(
-      userData
-    );
+    try {
 
-    alert(
-      "Đăng ký thành công!"
-    );
+      await registerUser(
+        userData
+      );
 
-    window.location.href =
-      "./login.html";
+      showToast(
+        "Đăng ký thành công!",
+        "success"
+      );
+
+      setTimeout(() => {
+
+        window.location.href =
+          "./login.html";
+
+      }, 1200);
+
+    } catch (error) {
+
+      console.log(error);
+
+      showToast(
+        "Đăng ký thất bại!",
+        "error"
+      );
+    }
+
   }
 );

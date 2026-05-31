@@ -1,4 +1,5 @@
 import { CONFIG } from "../config/config.js";
+import { showToast } from "../utils/toast.js";
 
 import {
   createBooking
@@ -7,8 +8,6 @@ import {
 import {
   getCurrentUser
 } from "../utils/auth.js";
-
-
 
 const serviceSelect =
   document.getElementById("service");
@@ -19,21 +18,22 @@ const technicianSelect =
 const bookingForm =
   document.getElementById("bookingForm");
 
-
-
 const currentUser =
   getCurrentUser();
 
-const urlParams = new URLSearchParams(window.location.search);
-const preselectServiceId = urlParams.get("id");
+const urlParams =
+  new URLSearchParams(
+    window.location.search
+  );
 
-
+const preselectServiceId =
+  urlParams.get("id");
 
 // =========================
 // AUTO FILL USER
 // =========================
 
-if(currentUser){
+if (currentUser) {
 
   document.getElementById("name").value =
     currentUser.name || "";
@@ -41,8 +41,6 @@ if(currentUser){
   document.getElementById("phone").value =
     currentUser.phone || "";
 }
-
-
 
 // =========================
 // LOAD SERVICES
@@ -53,11 +51,12 @@ async function loadServices() {
   try {
 
     const response =
-      await fetch(CONFIG.SERVICES_API);
+      await fetch(
+        CONFIG.SERVICES_API
+      );
 
     const services =
       await response.json();
-
 
     serviceSelect.innerHTML = `
       <option value="">
@@ -65,11 +64,12 @@ async function loadServices() {
       </option>
     `;
 
-
     services.forEach(service => {
 
       const option =
-        document.createElement("option");
+        document.createElement(
+          "option"
+        );
 
       option.value =
         service.id;
@@ -77,14 +77,24 @@ async function loadServices() {
       option.textContent =
         service.name;
 
-      serviceSelect.appendChild(option);
+      serviceSelect.appendChild(
+        option
+      );
     });
 
-    // Nếu có id service trên URL, chọn và set giá trị hiển thị
     if (preselectServiceId) {
-      const found = services.find(s => String(s.id) === String(preselectServiceId));
+
+      const found =
+        services.find(
+          s =>
+            String(s.id) ===
+            String(preselectServiceId)
+        );
+
       if (found) {
-        serviceSelect.value = found.id;
+
+        serviceSelect.value =
+          found.id;
       }
     }
 
@@ -94,10 +104,13 @@ async function loadServices() {
       "Lỗi load services:",
       error
     );
+
+    showToast(
+      "Không tải được danh sách dịch vụ",
+      "error"
+    );
   }
 }
-
-
 
 // =========================
 // LOAD TECHNICIANS
@@ -108,11 +121,12 @@ async function loadTechnicians() {
   try {
 
     const response =
-      await fetch(CONFIG.TECHNICIANS_API);
+      await fetch(
+        CONFIG.TECHNICIANS_API
+      );
 
     const technicians =
       await response.json();
-
 
     technicianSelect.innerHTML = `
       <option value="">
@@ -120,11 +134,12 @@ async function loadTechnicians() {
       </option>
     `;
 
-
     technicians.forEach(tech => {
 
       const option =
-        document.createElement("option");
+        document.createElement(
+          "option"
+        );
 
       option.value =
         tech.name;
@@ -132,7 +147,9 @@ async function loadTechnicians() {
       option.textContent =
         tech.name;
 
-      technicianSelect.appendChild(option);
+      technicianSelect.appendChild(
+        option
+      );
     });
 
   } catch (error) {
@@ -141,10 +158,13 @@ async function loadTechnicians() {
       "Lỗi load technicians:",
       error
     );
+
+    showToast(
+      "Không tải được danh sách kỹ thuật viên",
+      "error"
+    );
   }
 }
-
-
 
 // =========================
 // SUBMIT BOOKING
@@ -152,73 +172,88 @@ async function loadTechnicians() {
 
 bookingForm.addEventListener(
   "submit",
+
   async (e) => {
 
     e.preventDefault();
 
-
     const customerName =
-      document.getElementById("name").value;
+      document.getElementById(
+        "name"
+      ).value;
 
     const phone =
-      document.getElementById("phone").value;
+      document.getElementById(
+        "phone"
+      ).value;
 
     const address =
-      document.getElementById("address").value;
+      document.getElementById(
+        "address"
+      ).value;
 
     const bookingDate =
-      document.getElementById("date").value;
+      document.getElementById(
+        "date"
+      ).value;
 
     const note =
-      document.getElementById("note").value;
+      document.getElementById(
+        "note"
+      ).value;
 
+    if (!serviceSelect.value) {
 
-
-    // VALIDATE
-
-    if(!serviceSelect.value){
-
-      alert("Vui lòng chọn dịch vụ");
-
-      return;
-    }
-
-    if(!technicianSelect.value){
-
-      alert("Vui lòng chọn kỹ thuật viên");
+      showToast(
+        "Vui lòng chọn dịch vụ",
+        "error"
+      );
 
       return;
     }
 
+    if (!technicianSelect.value) {
 
+      showToast(
+        "Vui lòng chọn kỹ thuật viên",
+        "error"
+      );
+
+      return;
+    }
 
     const bookingData = {
 
-      customerName,
+  customerName,
 
-      phone,
+  phone,
 
-      address,
+  address,
 
-      serviceName:
-        serviceSelect.value,
+  serviceName:
+    serviceSelect.options[
+      serviceSelect.selectedIndex
+    ].text,
 
-      technicianName:
-        technicianSelect.value,
+  technicianName:
+    technicianSelect.value,
 
-      bookingDate,
+  bookingDate,
 
-      note,
+  note,
 
-      status:
-        "Chờ xác nhận"
-    };
-    // Gắn `userId` nếu user đã đăng nhập để my-bookings có thể lọc đúng
-    if (currentUser && currentUser.id) {
-      bookingData.userId = currentUser.id;
+  status:
+    "Chờ xác nhận"
+};
+
+    if (
+      currentUser &&
+      currentUser.id
+    ) {
+
+      bookingData.userId =
+        currentUser.id;
     }
-
-
 
     try {
 
@@ -226,42 +261,44 @@ bookingForm.addEventListener(
         bookingData
       );
 
-      alert(
-        "Đặt lịch thành công!"
+      showToast(
+        "Đặt lịch thành công!",
+        "success"
       );
 
-      // Chuyển sang trang 'Đơn của tôi' để người dùng xem đơn vừa tạo
-      window.location.href = "./my-bookings.html";
+      setTimeout(() => {
 
+        window.location.href =
+          "./my-bookings.html";
+
+      }, 1200);
 
       bookingForm.reset();
 
+      if (currentUser) {
 
-
-      // AUTO FILL LẠI USER
-
-      if(currentUser){
-
-        document.getElementById("name").value =
+        document.getElementById(
+          "name"
+        ).value =
           currentUser.name || "";
 
-        document.getElementById("phone").value =
+        document.getElementById(
+          "phone"
+        ).value =
           currentUser.phone || "";
       }
-
 
     } catch (error) {
 
       console.log(error);
 
-      alert(
-        "Đặt lịch thất bại!"
+      showToast(
+        "Đặt lịch thất bại!",
+        "error"
       );
     }
-
-});
-
-
+  }
+);
 
 // =========================
 // INIT

@@ -3,6 +3,10 @@ import {
   updateBooking
 } from "../api/booking.api.js";
 
+import {
+  showToast
+} from "../utils/toast.js";
+
 const bookingTableBody =
   document.getElementById(
     "bookingTableBody"
@@ -109,7 +113,9 @@ async function renderBookings() {
             ` : ""}
 
             ${booking.status === "Hoàn thành" ? `
-              <span style="color: #28a745; font-weight: 600;">✓ Đã hoàn thành</span>
+              <span style="color:#22c55e;font-weight:700;">
+                ✓ Đã hoàn thành
+              </span>
             ` : ""}
 
           </td>
@@ -133,6 +139,11 @@ async function renderBookings() {
         </td>
       </tr>
     `;
+
+    showToast(
+      "❌ Không thể tải dữ liệu",
+      "error"
+    );
   }
 }
 
@@ -154,7 +165,10 @@ window.confirmBooking =
         }
       );
 
-      alert("Đã xác nhận đơn!");
+      showToast(
+        "✅ Đã xác nhận đơn",
+        "success"
+      );
 
       renderBookings();
 
@@ -162,7 +176,10 @@ window.confirmBooking =
 
       console.log(error);
 
-      alert("Lỗi xác nhận!");
+      showToast(
+        "❌ Lỗi xác nhận đơn",
+        "error"
+      );
     }
   };
 
@@ -184,7 +201,10 @@ window.doneBooking =
         }
       );
 
-      alert("Đã hoàn thành đơn!");
+      showToast(
+        "🎉 Đơn đã hoàn thành",
+        "success"
+      );
 
       renderBookings();
 
@@ -192,13 +212,28 @@ window.doneBooking =
 
       console.log(error);
 
-      alert("Lỗi cập nhật!");
+      showToast(
+        "❌ Lỗi cập nhật trạng thái",
+        "error"
+      );
     }
   };
 
 
 
+// =========================
+// INIT
+// =========================
+
 renderBookings();
 
-// Auto refresh data every 5 seconds to see new bookings
-setInterval(renderBookings, 5000);
+
+
+// =========================
+// AUTO REFRESH
+// =========================
+
+setInterval(
+  renderBookings,
+  5000
+);

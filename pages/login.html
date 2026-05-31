@@ -7,39 +7,97 @@
 
     <title>Đăng Nhập</title>
 
+    <link rel="stylesheet" href="../css/toast.css" />
+
     <link rel="stylesheet" href="../css/login.css" />
-    <link rel="stylesheet" href="../css/header.css" />
   </head>
 
   <body>
-    <div id="headerContainer"></div>
-    <a class="back-btn" id="backBtn" href="./index.html">← Quay về</a>
-    <section class="login-section">
-      <form id="loginForm">
-        <h1>Đăng Nhập</h1>
+    <div class="auth-container">
+      <!-- LEFT -->
+      <div class="auth-left">
+        <div class="overlay"></div>
 
-        <input type="email" id="email" placeholder="Email" required />
+        <div class="auth-content">
+          <div class="logo-box">
+            <div class="logo-icon">🏠</div>
 
-        <input type="password" id="password" placeholder="Mật khẩu" required />
+            <h2>Dịch Vụ Tại Nhà</h2>
+          </div>
 
-        <button type="submit">Đăng Nhập</button>
-      </form>
-    </section>
+          <h1>
+            Dịch vụ sửa chữa
+            <br />
+            tại nhà chuyên nghiệp
+          </h1>
+
+          <p>
+            Đặt lịch sửa điều hòa, tủ lạnh, máy giặt, bình nóng lạnh... chỉ
+            trong vài phút.
+          </p>
+
+          <div class="feature-list">
+            <span> ⚡ Nhanh chóng </span>
+
+            <span> 🛠️ Chuyên nghiệp </span>
+
+            <span> ⭐ Uy tín </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="auth-right">
+        <a class="back-btn" href="../index.html"> ← Trang chủ </a>
+
+        <div class="auth-card">
+          <div class="tabs">
+            <button class="active">Đăng nhập</button>
+
+            <button onclick="window.location.href = './register.html'">
+              Đăng ký
+            </button>
+          </div>
+
+          <h1>Chào mừng trở lại</h1>
+
+          <p class="subtitle">Đăng nhập để tiếp tục sử dụng dịch vụ</p>
+
+          <form id="loginForm">
+            <div class="input-group">
+              <label>Email</label>
+
+              <input
+                type="email"
+                id="email"
+                placeholder="Nhập email"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label>Mật khẩu</label>
+
+              <input
+                type="password"
+                id="password"
+                placeholder="Nhập mật khẩu"
+                required
+              />
+            </div>
+
+            <button class="login-btn" type="submit">Đăng Nhập</button>
+          </form>
+
+          <p class="bottom-text">
+            Chưa có tài khoản?
+
+            <a href="./register.html"> Đăng ký ngay </a>
+          </p>
+        </div>
+      </div>
+    </div>
 
     <script type="module" src="../js/pages/login.js"></script>
-    <script type="module">
-      fetch("../components/header.html")
-        .then((res) => res.text())
-        .then((data) => {
-          document.querySelector("#headerContainer").innerHTML = data;
-          import("../js/components/header.js");
-
-          const backBtn = document.getElementById("backBtn");
-          try {
-            const ref = document.referrer;
-            if (ref) backBtn.href = ref;
-          } catch (e) {}
-        });
-    </script>
   </body>
 </html>

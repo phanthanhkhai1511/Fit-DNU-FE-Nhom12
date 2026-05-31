@@ -9,340 +9,504 @@ html {
 }
 
 body {
-
-    font-family: Arial, Helvetica, sans-serif;
-
+    font-family: "Segoe UI", Arial, sans-serif;
     overflow-x: hidden;
-
-    background: #f8f9fa;
+    background: #f8fafc;
+    color: #111827;
 }
 
-
-/* =========================
+/* =================================
    HERO
-========================= */
+================================= */
 
 .hero {
-
-    height: 100vh;
+    min-height: 100vh;
 
     background:
-
-        linear-gradient(rgba(0, 0, 0, 0.55),
-            rgba(0, 0, 0, 0.55)),
-
+        linear-gradient(rgba(0, 0, 0, .70),
+            rgba(0, 0, 0, .70)),
         url("https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=1974&auto=format&fit=crop");
 
     background-size: cover;
-
     background-position: center;
 
-    background-repeat: no-repeat;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
     text-align: center;
 
-    padding: 20px;
+    padding: 180px 20px 120px;
 }
 
 .hero-content {
-
-    max-width: 800px;
-
+    max-width: 950px;
     color: white;
+}
+
+.hero-tag {
+    display: inline-block;
+
+    padding: 12px 24px;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, .12);
+
+    border: 1px solid rgba(255, 255, 255, .2);
+
+    backdrop-filter: blur(10px);
+
+    letter-spacing: 3px;
+
+    font-size: 13px;
+
+    margin-bottom: 30px;
 }
 
 .hero-content h1 {
-
-    font-size: 64px;
-
-    margin-bottom: 20px;
-
-    line-height: 1.2;
+    font-size: 78px;
+    line-height: 1.05;
+    margin-bottom: 25px;
+    font-weight: 800;
 }
 
 .hero-content p {
-
     font-size: 24px;
-
-    margin-bottom: 40px;
-
-    color: #ddd;
+    color: #e5e7eb;
+    max-width: 850px;
+    margin: auto;
+    margin-bottom: 45px;
+    line-height: 1.7;
 }
 
-.hero-content a {
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-    display: inline-block;
-
-    padding: 16px 32px;
-
-    background: #007bff;
-
-    color: white;
-
+.btn-primary,
+.btn-secondary {
+    padding: 18px 36px;
+    border-radius: 14px;
     text-decoration: none;
-
-    border-radius: 8px;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    transition: 0.3s;
+    font-weight: 700;
+    transition: .3s;
 }
 
-.hero-content a:hover {
-
-    background: #0056b3;
-
-    transform: translateY(-3px);
+.btn-primary {
+    background: #2563eb;
+    color: white;
 }
 
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, .4);
+}
 
-/* =========================
-   SECTIONS
-========================= */
+.btn-secondary {
+    background: white;
+    color: #111827;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-4px);
+}
+
+/* =================================
+   STATS
+================================= */
+
+.stats {
+    max-width: 1250px;
+
+    margin: -90px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    padding: 0 30px;
+
+    position: relative;
+    z-index: 20;
+}
+
+.stat-box {
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, .08);
+
+    transition: .3s;
+}
+
+.stat-box:hover {
+    transform: translateY(-8px);
+}
+
+.stat-box h3 {
+    font-size: 52px;
+    color: #2563eb;
+    margin-bottom: 10px;
+}
+
+.stat-box p {
+    color: #6b7280;
+    font-size: 20px;
+}
+
+/* =================================
+   SECTION
+================================= */
 
 .services,
 .technicians {
-
-    width: 100%;
-
     padding: 120px 60px;
 }
 
 .services h2,
 .technicians h2 {
-
     text-align: center;
 
-    margin-bottom: 60px;
+    font-size: 56px;
 
-    font-size: 42px;
+    margin-bottom: 70px;
 
-    color: #222;
+    color: #111827;
+
+    font-weight: 800;
 }
 
+/* =================================
+   GRID
+================================= */
 
-/* =========================
-   SERVICES GRID
-========================= */
-
-.service-list {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit,
-            minmax(320px, 1fr));
-
-    gap: 30px;
-
-    max-width: 1400px;
-
-    margin: auto;
-}
-
-
-/* =========================
-   TECHNICIANS GRID
-========================= */
-
+.service-list,
 .technician-list {
-
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,
-            minmax(280px, 1fr));
+        repeat(auto-fit, minmax(320px, 1fr));
 
-    gap: 30px;
+    gap: 35px;
 
     max-width: 1400px;
 
     margin: auto;
 }
 
-
-/* =========================
-   CARDS
-========================= */
+/* =================================
+   CARD
+================================= */
 
 .service-card,
 .technician-card {
-
     background: white;
 
-    border-radius: 16px;
+    border-radius: 24px;
 
     overflow: hidden;
 
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.08);
+        0 10px 30px rgba(0, 0, 0, .08);
 
-    transition: 0.3s;
-
-    cursor: pointer;
+    transition: .35s;
 }
 
 .service-card:hover,
 .technician-card:hover {
-
-    transform:
-        translateY(-10px);
+    transform: translateY(-12px);
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.15);
+        0 20px 50px rgba(0, 0, 0, .15);
 }
-
-
-/* =========================
-   CARD IMAGES
-========================= */
 
 .service-card img,
 .technician-card img {
-
     width: 100%;
-
-    height: 220px;
-
+    height: 240px;
     object-fit: cover;
-
-    display: block;
-}
-
-
-/* =========================
-   CARD CONTENT
-========================= */
-
-.service-card {
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    min-height: 420px;
-}
-
-.technician-card {
-
-    min-height: 380px;
 }
 
 .service-card h3,
 .technician-card h3 {
-
-    padding: 20px 20px 10px;
-
-    font-size: 22px;
-
-    color: #222;
+    padding: 25px 25px 10px;
+    font-size: 24px;
 }
 
 .service-card p,
 .technician-card p {
-
-    padding: 0 20px 15px;
-
-    color: #666;
-
-    line-height: 1.6;
+    padding: 0 25px 15px;
+    color: #6b7280;
+    line-height: 1.8;
 }
 
 .service-card span {
-
     display: block;
 
-    padding: 0 20px 25px;
+    padding: 0 25px 20px;
 
-    color: #e63946;
+    font-size: 24px;
 
-    font-size: 20px;
+    font-weight: 800;
 
-    font-weight: bold;
+    color: #ef4444;
 }
 
+.book-btn {
+    width: calc(100% - 50px);
 
-/* =========================
-   FOOTER
-========================= */
+    margin: 0 25px 25px;
 
-footer {
+    padding: 15px;
 
-    background: #111;
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2563eb;
 
     color: white;
 
-    text-align: center;
+    font-weight: 700;
 
-    padding: 40px;
+    cursor: pointer;
+
+    transition: .3s;
 }
 
+.book-btn:hover {
+    background: #1d4ed8;
+}
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 60px;
+}
+
+/* =================================
+   MODERN WELCOME MODAL
+================================= */
+
+.welcome-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .75);
+    backdrop-filter: blur(10px);
+    z-index: 99999;
+    animation: fadeIn .4s ease;
+}
+
+.welcome-modal-content {
+    width: 720px;
+    max-width: 92%;
+    background: rgba(255, 255, 255, .96);
+    border-radius: 30px;
+    padding: 45px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .35);
+    animation: modalShow .45s ease;
+}
+
+.modal-icon {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eff6ff;
+    font-size: 52px;
+}
+
+.welcome-modal-content h2 {
+    font-size: 46px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 18px;
+}
+
+.modal-desc {
+    font-size: 19px;
+    color: #6b7280;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+.modal-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.feature-item {
+    background: #f8fafc;
+    border-radius: 18px;
+    padding: 18px;
+    transition: .3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-4px);
+    background: #eff6ff;
+}
+
+.feature-item span {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.feature-item h4 {
+    margin-bottom: 6px;
+    color: #111827;
+}
+
+.feature-item p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 34px;
+    cursor: pointer;
+}
+
+.explore-btn {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.explore-btn:hover {
+    transform: translateY(-3px);
+}
+
+@keyframes modalShow {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* =================================
+   MOBILE
+================================= */
 
 @media(max-width:768px) {
 
     .hero-content h1 {
-
-        font-size: 42px;
+        font-size: 46px;
     }
 
     .hero-content p {
-
         font-size: 18px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        margin-top: -50px;
     }
 
     .services,
     .technicians {
-
         padding: 80px 20px;
     }
 
     .services h2,
     .technicians h2 {
+        font-size: 36px;
+    }
 
+    .modal-features {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-modal-content {
+        padding: 30px 20px;
+    }
+
+    .welcome-modal-content h2 {
         font-size: 32px;
     }
 }
 
-.book-btn {
+.hero-content h1 {
+    font-size: 78px;
+    line-height: 1.05;
+    margin-bottom: 25px;
+    font-weight: 800;
 
-    width: calc(100% - 40px);
+    background: linear-gradient(135deg,
+            #ffffff,
+            #93c5fd);
 
-    margin: 0 20px 20px;
-
-    padding: 14px;
-
-    border: none;
-
-    background: #007bff;
-
-    color: white;
-
-    border-radius: 8px;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.book-btn:hover {
+.service-card {
+    position: relative;
+}
 
-    background: #0056b3;
+.service-card::before {
+    content: "HOT";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ef4444;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: bold;
 }

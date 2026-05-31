@@ -7,27 +7,110 @@
 
     <title>Home Services</title>
 
-    <!-- CSS -->
-
+    <link rel="stylesheet" href="./css/toast.css" />
     <link rel="stylesheet" href="./css/header.css" />
-
     <link rel="stylesheet" href="./css/home.css" />
   </head>
 
   <body>
     <!-- HEADER -->
-
     <div id="headerContainer"></div>
+
+    <!-- POPUP CHÀO MỪNG -->
+
+    <div class="welcome-modal" id="welcomeModal">
+      <div class="welcome-modal-content">
+        <button class="close-modal" id="closeModal">✕</button>
+
+        <div class="modal-icon">🏠</div>
+
+        <h2>Chào mừng đến với Home Services</h2>
+
+        <p class="modal-desc">
+          Nền tảng đặt lịch sửa chữa tại nhà nhanh chóng, an toàn và chuyên
+          nghiệp.
+        </p>
+
+        <div class="modal-features">
+          <div class="feature-item">
+            <span>🛡️</span>
+
+            <div>
+              <h4>Uy tín</h4>
+
+              <p>Đảm bảo chất lượng dịch vụ</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <span>⚡</span>
+
+            <div>
+              <h4>Nhanh chóng</h4>
+
+              <p>Có mặt tận nơi đúng hẹn</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <span>⭐</span>
+
+            <div>
+              <h4>Chuyên nghiệp</h4>
+
+              <p>Kỹ thuật viên nhiều kinh nghiệm</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="explore-btn" id="exploreBtn">Khám phá ngay →</button>
+      </div>
+    </div>
 
     <!-- HERO -->
 
     <section class="hero">
       <div class="hero-content">
-        <h1>Dịch Vụ Sửa Chữa Tại Nhà</h1>
+        <span class="hero-tag"> DỊCH VỤ TẠI NHÀ </span>
 
-        <p>Nhanh chóng - Uy tín - Chuyên nghiệp</p>
+        <h1>
+          Dịch Vụ Sửa Chữa
+          <br />
+          Tại Nhà Chuyên Nghiệp
+        </h1>
 
-        <a href="#services"> Đặt Dịch Vụ Ngay </a>
+        <p>
+          Đặt lịch nhanh chóng, kỹ thuật viên uy tín, hỗ trợ tận nơi chỉ với vài
+          thao tác.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#services" class="btn-primary"> Đặt Dịch Vụ </a>
+
+          <a href="#technicians" class="btn-secondary"> Xem Kỹ Thuật Viên </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+
+    <section class="stats">
+      <div class="stat-box">
+        <h3>500+</h3>
+
+        <p>Khách Hàng</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>100+</h3>
+
+        <p>Kỹ Thuật Viên</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>1000+</h3>
+
+        <p>Lịch Hẹn</p>
       </div>
     </section>
 
@@ -36,7 +119,7 @@
     <section class="services" id="services">
       <h2>Dịch Vụ Nổi Bật</h2>
 
-      <div class="service-list" id="serviceList"></div>
+      <div class="service-list"></div>
     </section>
 
     <!-- TECHNICIANS -->
@@ -50,7 +133,7 @@
     <!-- FOOTER -->
 
     <footer>
-      <p>© 2025 Home Services</p>
+      <p>© 2026 Dịch Vụ Tại Nhà</p>
     </footer>
 
     <!-- HEADER COMPONENT -->

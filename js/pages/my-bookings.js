@@ -1,4 +1,5 @@
 import { CONFIG } from "../config/config.js";
+import { showToast } from "../utils/toast.js";
 
 const user =
   JSON.parse(localStorage.getItem("user"));
@@ -6,21 +7,24 @@ const user =
 const bookingTableBody =
   document.getElementById("bookingTableBody");
 
-
-
 // =========================
 // KIỂM TRA LOGIN
 // =========================
 
 if (!user) {
 
-  alert("Vui lòng đăng nhập!");
+  showToast(
+    "Vui lòng đăng nhập!",
+    "error"
+  );
 
-  window.location.href =
-    "/pages/login.html";
+  setTimeout(() => {
+
+    window.location.href =
+      "/pages/login.html";
+
+  }, 1500);
 }
-
-
 
 // =========================
 // LOAD ĐƠN ĐẶT LỊCH
@@ -36,13 +40,9 @@ async function loadMyBookings() {
     const bookings =
       await response.json();
 
-
-
-    // LỌC ĐÚNG USER
     const myBookings =
       bookings.filter(booking => {
 
-        // ƯU TIÊN userId
         if (booking.userId) {
 
           return (
@@ -50,24 +50,23 @@ async function loadMyBookings() {
           );
         }
 
-        // FALLBACK THEO PHONE
         return (
           booking.phone === user.phone
         );
       });
 
-
-
-    // KHÔNG CÓ ĐƠN
     if (myBookings.length === 0) {
 
       bookingTableBody.innerHTML = `
         <tr>
           <td colspan="5"
-              style="text-align:center;">
-              
+              style="
+                text-align:center;
+                padding:30px;
+                color:#6b7280;
+                font-weight:600;
+              ">
             Bạn chưa có đơn đặt lịch nào
-
           </td>
         </tr>
       `;
@@ -75,9 +74,6 @@ async function loadMyBookings() {
       return;
     }
 
-
-
-    // HIỂN THỊ (4 cột phù hợp với header)
     bookingTableBody.innerHTML =
       myBookings.map(booking => `
 
@@ -116,27 +112,34 @@ async function loadMyBookings() {
 
       `).join("");
 
-
   } catch (error) {
 
     console.log(error);
 
+    showToast(
+      "Không thể tải dữ liệu",
+      "error"
+    );
+
     bookingTableBody.innerHTML = `
       <tr>
         <td colspan="5"
-            style="text-align:center;color:red;">
-          
+            style="
+              text-align:center;
+              color:red;
+              padding:30px;
+            ">
           Không thể tải dữ liệu
-
         </td>
       </tr>
     `;
   }
 }
 
-
-
 loadMyBookings();
 
-// Auto refresh data every 5 seconds
-setInterval(loadMyBookings, 5000);
+// Auto refresh
+setInterval(
+  loadMyBookings,
+  5000
+);

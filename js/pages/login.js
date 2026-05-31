@@ -1,6 +1,5 @@
-import {
-  loginUser
-} from "../api/auth.api.js";
+import { loginUser } from "../api/auth.api.js";
+import { showToast } from "../utils/toast.js";
 
 const loginForm =
   document.querySelector(
@@ -30,38 +29,32 @@ loginForm.addEventListener(
         password
       );
 
-    if(!user){
+    if (!user) {
 
-      alert(
-        "Sai tài khoản hoặc mật khẩu"
+      showToast(
+        "Sai tài khoản hoặc mật khẩu",
+        "error"
       );
 
       return;
     }
-
-    // LƯU USER LOGIN
 
     localStorage.setItem(
       "user",
       JSON.stringify(user)
     );
 
-    alert(
-      "Đăng nhập thành công!"
+    showToast(
+      "Đăng nhập thành công!",
+      "success"
     );
 
-    // KIỂM TRA ROLE
-
-    if(user.role === "admin"){
-
-      window.location.href =
-        "/admin/dashboard.html";
-    }
-
-    else{
+    setTimeout(() => {
 
       window.location.href =
         "/index.html";
-    }
+
+    }, 1200);
+
   }
 );

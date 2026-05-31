@@ -20,25 +20,25 @@ if (!user) {
 
     <li>
       <a href="/pages/services.html">
-        Services
+        Dịch vụ
       </a>
     </li>
 
     <li>
       <a href="/pages/technicians.html">
-        Technicians
+        Kỹ thuật viên
       </a>
     </li>
 
     <li>
       <a href="/pages/login.html">
-        Login
+        Đăng nhập
       </a>
     </li>
 
     <li>
       <a href="/pages/register.html">
-        Register
+        Đăng ký
       </a>
     </li>
 
@@ -63,25 +63,25 @@ else {
     <!-- USER MENU -->
     <li>
       <a href="/pages/services.html">
-        Services
+        Dịch vụ
       </a>
     </li>
 
     <li>
       <a href="/pages/technicians.html">
-        Technicians
+        Kỹ thuật viên
       </a>
     </li>
 
     <li>
       <a href="/pages/booking.html">
-        Đặt Lịch
+        Đặt lịch
       </a>
     </li>
 
     <li>
       <a href="/pages/my-bookings.html">
-        Đơn Của Tôi
+        Đơn của tôi
       </a>
     </li>
 
@@ -96,7 +96,7 @@ else {
 
       <li>
         <a href="/admin/dashboard.html">
-          Dashboard
+          Bảng điều khiển
         </a>
       </li>
 
@@ -133,7 +133,7 @@ else {
         class="logout-btn"
         id="logoutBtn"
       >
-        Logout
+        Đăng xuất
       </button>
 
     </li>
@@ -148,3 +148,31 @@ else {
     logout
   );
 }
+
+// =========================
+// HEADER SCROLL EFFECT
+// =========================
+
+const header =
+  document.querySelector("#mainHeader");
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if (window.scrollY > 50) {
+
+      header.classList.add(
+        "scrolled"
+      );
+
+    } else {
+
+      header.classList.remove(
+        "scrolled"
+      );
+
+    }
+
+  }
+);

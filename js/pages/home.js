@@ -1,9 +1,10 @@
+import { showToast } from "../utils/toast.js";
+
 const SERVICE_API =
   "https://69fc37acfce564e259177acf.mockapi.io/api/v1/services";
 
 const TECHNICIAN_API =
   "https://69fc37acfce564e259177acf.mockapi.io/api/v1/technicians";
-
 
 const serviceList =
   document.querySelector(".service-list");
@@ -11,14 +12,52 @@ const serviceList =
 const technicianList =
   document.querySelector(".technician-list");
 
+/* =========================
+   MODAL WELCOME
+========================= */
+
+window.addEventListener("load", () => {
+
+  const modal =
+    document.getElementById("welcomeModal");
+
+  const closeBtn =
+    document.getElementById("closeModal");
+
+  const exploreBtn =
+    document.getElementById("exploreBtn");
+
+  if (!modal) return;
+
+  setTimeout(() => {
+    modal.style.display = "flex";
+  }, 500);
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  exploreBtn.addEventListener("click", () => {
+
+    modal.style.display = "none";
+
+    document
+      .querySelector("#services")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  });
+
+});
 
 /* =========================
    LOAD SERVICES
 ========================= */
 
-async function loadServices(){
+async function loadServices() {
 
-  try{
+  try {
 
     const response =
       await fetch(SERVICE_API);
@@ -64,30 +103,27 @@ async function loadServices(){
       `;
     });
 
-  }catch(error){
+  } catch (error) {
 
     console.log(error);
 
     serviceList.innerHTML = `
-      <p>
-        Không tải được dịch vụ
-      </p>
+      <p>Không tải được dịch vụ</p>
     `;
   }
 }
-
 
 /* =========================
    LOAD TECHNICIANS
 ========================= */
 
-async function loadTechnicians(){
+async function loadTechnicians() {
 
-  if(!technicianList){
+  if (!technicianList) {
     return;
   }
 
-  try{
+  try {
 
     const response =
       await fetch(TECHNICIAN_API);
@@ -127,38 +163,40 @@ async function loadTechnicians(){
       `;
     });
 
-  }catch(error){
+  } catch (error) {
 
     console.log(error);
 
     technicianList.innerHTML = `
-      <p>
-        Không tải được kỹ thuật viên
-      </p>
+      <p>Không tải được kỹ thuật viên</p>
     `;
   }
 }
-
 
 /* =========================
    GO BOOKING
 ========================= */
 
-window.goBooking = function(id){
+window.goBooking = function (id) {
 
   const user =
     JSON.parse(
       localStorage.getItem("user")
     );
 
-  if(!user){
+  if (!user) {
 
-    alert(
-      "Vui lòng đăng nhập!"
+    showToast(
+      "⚠ Vui lòng đăng nhập!",
+      "warning"
     );
 
-    window.location.href =
-      "./pages/login.html";
+    setTimeout(() => {
+
+      window.location.href =
+        "./pages/login.html";
+
+    }, 1200);
 
     return;
   }
@@ -167,11 +205,9 @@ window.goBooking = function(id){
     `./pages/booking.html?id=${id}`;
 };
 
-
 /* =========================
    INIT
 ========================= */
 
 loadServices();
 loadTechnicians();
-

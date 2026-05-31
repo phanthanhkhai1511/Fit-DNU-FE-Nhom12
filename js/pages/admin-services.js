@@ -1,23 +1,16 @@
+import { showToast } from "../utils/toast.js";
+
 import {
-
   getServices,
-
   createService,
-
   deleteService,
-
   updateService,
-
 } from "../api/service.api.js";
 
 import {
-
   checkAdmin,
-
   logout
-
-}
-from "../utils/auth.js";
+} from "../utils/auth.js";
 
 
 // =========================
@@ -179,52 +172,66 @@ serviceForm.addEventListener(
     };
 
 
-    // =========================
-    // UPDATE
-    // =========================
+    try {
 
-    if (editingServiceId) {
+      // =========================
+      // UPDATE
+      // =========================
 
-      await updateService(
-        editingServiceId,
-        serviceData
+      if (editingServiceId) {
+
+        await updateService(
+          editingServiceId,
+          serviceData
+        );
+
+        showToast(
+          "Cập nhật thành công!",
+          "success"
+        );
+
+        editingServiceId = null;
+
+        submitBtn.textContent =
+          "Thêm Dịch Vụ";
+      }
+
+
+      // =========================
+      // CREATE
+      // =========================
+
+      else {
+
+        await createService(
+          serviceData
+        );
+
+        showToast(
+          "Thêm dịch vụ thành công!",
+          "success"
+        );
+      }
+
+
+      // RESET FORM
+
+      serviceForm.reset();
+
+
+      // RENDER LẠI
+
+      renderServices();
+
+    } catch (error) {
+
+      console.log(error);
+
+      showToast(
+        "Có lỗi xảy ra!",
+        "error"
       );
-
-      alert(
-        "Cập nhật thành công!"
-      );
-
-      editingServiceId = null;
-
-      submitBtn.textContent =
-        "Thêm Dịch Vụ";
     }
-
-
-    // =========================
-    // CREATE
-    // =========================
-
-    else {
-
-      await createService(
-        serviceData
-      );
-
-      alert(
-        "Thêm dịch vụ thành công!"
-      );
-    }
-
-
-    // RESET FORM
-
-    serviceForm.reset();
-
-
-    // RENDER LẠI
-
-    renderServices();
   }
 );
 
@@ -262,6 +269,11 @@ window.handleEdit =
 
     submitBtn.textContent =
       "Cập Nhật";
+
+    showToast(
+      "Đang chỉnh sửa dịch vụ",
+      "info"
+    );
 };
 
 
@@ -274,14 +286,31 @@ window.handleDelete =
 
     const confirmDelete =
       confirm(
-        "Bạn có chắc muốn xóa?"
+        "Bạn có chắc muốn xóa dịch vụ này?"
       );
 
     if (!confirmDelete) return;
 
-    await deleteService(id);
+    try {
 
-    renderServices();
+      await deleteService(id);
+
+      showToast(
+        "Xóa thành công!",
+        "success"
+      );
+
+      renderServices();
+
+    } catch (error) {
+
+      console.log(error);
+
+      showToast(
+        "Xóa thất bại!",
+        "error"
+      );
+    }
 };
 
 

@@ -1,58 +1,71 @@
-export const checkAdmin =
-  () => {
+import { showToast } from "./toast.js";
 
-    const user =
-      JSON.parse(
-        localStorage.getItem(
-          "user"
-        )
-      );
+export const checkAdmin = () => {
 
-    if(!user){
-
-      alert(
-        "Vui lòng đăng nhập!"
-      );
-
-      window.location.href =
-        "/pages/login.html";
-
-      return;
-    }
-
-    if(user.role !== "admin"){
-
-      alert(
-        "Bạn không có quyền truy cập!"
-      );
-
-      window.location.href =
-        "/pages/login.html";
-    }
-};
-
-
-export const logout =
-  () => {
-
-    localStorage.removeItem(
-      "user"
-    );
-
-    alert(
-      "Đăng xuất thành công!"
-    );
-
-    window.location.href =
-      "/pages/login.html";
-};
-
-export const getCurrentUser =
-  () => {
-
-    return JSON.parse(
+  const user =
+    JSON.parse(
       localStorage.getItem(
         "user"
       )
     );
+
+  if (!user) {
+
+    showToast(
+      "⚠ Vui lòng đăng nhập!",
+      "warning"
+    );
+
+    setTimeout(() => {
+
+      window.location.href =
+        "/pages/login.html";
+
+    }, 1200);
+
+    return;
+  }
+
+  if (user.role !== "admin") {
+
+    showToast(
+      "✖ Bạn không có quyền truy cập!",
+      "error"
+    );
+
+    setTimeout(() => {
+
+      window.location.href =
+        "/pages/login.html";
+
+    }, 1200);
+  }
+};
+
+export const logout = () => {
+
+  localStorage.removeItem(
+    "user"
+  );
+
+  showToast(
+    "✓ Đăng xuất thành công!",
+    "success"
+  );
+
+  setTimeout(() => {
+
+    window.location.href =
+      "/pages/login.html";
+
+  }, 1200);
+};
+
+export const getCurrentUser = () => {
+
+  return JSON.parse(
+    localStorage.getItem(
+      "user"
+    )
+  );
 };

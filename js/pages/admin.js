@@ -4,6 +4,10 @@ import {
     getCurrentUser
 } from "../utils/auth.js";
 
+import {
+    showToast
+} from "../utils/toast.js";
+
 
 // =========================
 // CHECK ADMIN
@@ -13,9 +17,17 @@ const user = getCurrentUser();
 
 if (!user || user.role !== "admin") {
 
-    alert("Bạn không có quyền truy cập!");
+    showToast(
+        "⛔ Bạn không có quyền truy cập",
+        "error"
+    );
 
-    window.location.href = "../index.html";
+    setTimeout(() => {
+
+        window.location.href =
+            "../index.html";
+
+    }, 1500);
 }
 
 
@@ -54,6 +66,7 @@ async function loadDashboard() {
             await serviceRes.json();
 
         if (totalServices) {
+
             totalServices.textContent =
                 services.length;
         }
@@ -68,6 +81,7 @@ async function loadDashboard() {
             await techRes.json();
 
         if (totalTechnicians) {
+
             totalTechnicians.textContent =
                 technicians.length;
         }
@@ -82,6 +96,7 @@ async function loadDashboard() {
             await bookingRes.json();
 
         if (totalBookings) {
+
             totalBookings.textContent =
                 bookings.length;
         }
@@ -96,6 +111,7 @@ async function loadDashboard() {
             await userRes.json();
 
         if (totalUsers) {
+
             totalUsers.textContent =
                 users.length;
         }
@@ -109,8 +125,9 @@ async function loadDashboard() {
             error
         );
 
-        alert(
-            "Không tải được dashboard!"
+        showToast(
+            "❌ Không tải được dashboard",
+            "error"
         );
     }
 }
