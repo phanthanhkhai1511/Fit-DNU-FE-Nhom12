@@ -24,6 +24,9 @@ const bookingForm =
 const currentUser =
   getCurrentUser();
 
+const urlParams = new URLSearchParams(window.location.search);
+const preselectServiceId = urlParams.get("id");
+
 
 
 // =========================
@@ -76,6 +79,14 @@ async function loadServices() {
 
       serviceSelect.appendChild(option);
     });
+
+    // Nếu có id service trên URL, chọn và set giá trị hiển thị
+    if (preselectServiceId) {
+      const found = services.find(s => String(s.id) === String(preselectServiceId));
+      if (found) {
+        serviceSelect.value = found.name;
+      }
+    }
 
   } catch (error) {
 
@@ -202,6 +213,10 @@ bookingForm.addEventListener(
       status:
         "Chờ xác nhận"
     };
+    // Gắn `userId` nếu user đã đăng nhập để my-bookings có thể lọc đúng
+    if (currentUser && currentUser.id) {
+      bookingData.userId = currentUser.id;
+    }
 
 
 
@@ -214,6 +229,9 @@ bookingForm.addEventListener(
       alert(
         "Đặt lịch thành công!"
       );
+
+      // Chuyển sang trang 'Đơn của tôi' để người dùng xem đơn vừa tạo
+      window.location.href = "./my-bookings.html";
 
 
       bookingForm.reset();

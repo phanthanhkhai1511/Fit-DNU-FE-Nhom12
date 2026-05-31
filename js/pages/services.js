@@ -57,3 +57,20 @@ const renderServices = async () => {
 };
 
 renderServices();
+
+// Delegate click for booking buttons to handle navigation and login check
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".booking-btn");
+  if (!btn) return;
+
+  const id = btn.dataset.id;
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user) {
+    alert("Vui lòng đăng nhập!");
+    window.location.href = "./login.html";
+    return;
+  }
+
+  window.location.href = `./booking.html?id=${id}`;
+});

@@ -17,7 +17,7 @@ if (!user) {
   alert("Vui lòng đăng nhập!");
 
   window.location.href =
-    "../pages/login.html";
+    "/pages/login.html";
 }
 
 
@@ -77,15 +77,11 @@ async function loadMyBookings() {
 
 
 
-    // HIỂN THỊ
+    // HIỂN THỊ (4 cột phù hợp với header)
     bookingTableBody.innerHTML =
       myBookings.map(booking => `
 
         <tr>
-
-          <td>
-            ${booking.customerName || ""}
-          </td>
 
           <td>
             ${booking.serviceName || ""}
@@ -141,3 +137,6 @@ async function loadMyBookings() {
 
 
 loadMyBookings();
+
+// Auto refresh data every 5 seconds
+setInterval(loadMyBookings, 5000);

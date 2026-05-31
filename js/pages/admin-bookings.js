@@ -90,19 +90,27 @@ async function renderBookings() {
 
           <td class="actions">
 
-            <button
-              class="confirm-btn"
-              onclick="confirmBooking('${booking.id}')"
-            >
-              Xác nhận
-            </button>
+            ${booking.status === "Chờ xác nhận" ? `
+              <button
+                class="confirm-btn"
+                onclick="confirmBooking('${booking.id}')"
+              >
+                Xác nhận
+              </button>
+            ` : ""}
 
-            <button
-              class="done-btn"
-              onclick="doneBooking('${booking.id}')"
-            >
-              Hoàn thành
-            </button>
+            ${booking.status === "Đã xác nhận" ? `
+              <button
+                class="done-btn"
+                onclick="doneBooking('${booking.id}')"
+              >
+                Hoàn thành
+              </button>
+            ` : ""}
+
+            ${booking.status === "Hoàn thành" ? `
+              <span style="color: #28a745; font-weight: 600;">✓ Đã hoàn thành</span>
+            ` : ""}
 
           </td>
 
@@ -191,3 +199,6 @@ window.doneBooking =
 
 
 renderBookings();
+
+// Auto refresh data every 5 seconds to see new bookings
+setInterval(renderBookings, 5000);

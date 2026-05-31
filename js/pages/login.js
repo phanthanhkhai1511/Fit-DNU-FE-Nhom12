@@ -55,13 +55,13 @@ loginForm.addEventListener(
     if(user.role === "admin"){
 
       window.location.href =
-        "../admin/bookings.html";
+        "/admin/dashboard.html";
     }
 
     else{
 
       window.location.href =
-        "../index.html";
+        "/index.html";
     }
   }
 );

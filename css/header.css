@@ -50,6 +50,10 @@
     list-style: none;
 }
 
+.nav-list {
+    flex-wrap: wrap;
+}
+
 .nav-list a {
 
     color: white;
@@ -59,6 +63,24 @@
     font-weight: 600;
 
     transition: 0.3s;
+}
+
+/* Ensure links never show browser default purple/underline */
+.nav-list a,
+.nav-list a:visited,
+.nav-list a:active,
+.nav-list a:focus {
+    color: white;
+    text-decoration: none;
+    outline: none;
+}
+
+/* Logo is an anchor now; style to look like plain text */
+.logo,
+.logo:visited,
+.logo:active {
+    color: white;
+    text-decoration: none;
 }
 
 .nav-list a:hover {
@@ -86,4 +108,38 @@
 .logout-btn:hover {
 
     background: #c1121f;
+}
+
+.back-btn {
+    display: inline-block;
+    margin: 90px 20px 10px 20px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.back-btn:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 20px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-list {
+        gap: 12px;
+    }
+
+    .back-btn {
+        margin-top: 70px;
+        margin-left: 12px;
+    }
 }

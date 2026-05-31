@@ -42,9 +42,16 @@ td {
 }
 
 .pending {
-    background: orange;
+    background: #ff9800;
+    color: white;
+}
+
+.confirm {
+    background: #2196f3;
+    color: white;
 }
 
 .done {
-    background: green;
+    background: #4caf50;
+    color: white;
 }

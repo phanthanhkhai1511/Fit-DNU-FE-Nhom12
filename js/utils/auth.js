@@ -15,7 +15,7 @@ export const checkAdmin =
       );
 
       window.location.href =
-        "../pages/login.html";
+        "/pages/login.html";
 
       return;
     }
@@ -27,7 +27,7 @@ export const checkAdmin =
       );
 
       window.location.href =
-        "../pages/login.html";
+        "/pages/login.html";
     }
 };
 
@@ -44,7 +44,7 @@ export const logout =
     );
 
     window.location.href =
-      "../pages/login.html";
+      "/pages/login.html";
 };
 
 export const getCurrentUser =

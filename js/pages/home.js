@@ -100,7 +100,7 @@ async function loadTechnicians(){
         <div class="technician-card">
 
           <img
-            src="${tech.image}"
+            src="${tech.avatar}"
             alt="${tech.name}"
           />
 
@@ -154,13 +154,13 @@ window.goBooking = function(id){
     );
 
     window.location.href =
-      "/pages/login.html";
+      "./pages/login.html";
 
     return;
   }
 
   window.location.href =
-    `/pages/booking.html?id=${id}`;
+    `./pages/booking.html?id=${id}`;
 };
 
 
@@ -169,4 +169,5 @@ window.goBooking = function(id){
 ========================= */
 
 loadServices();
+loadTechnicians();
 

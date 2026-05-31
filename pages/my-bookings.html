@@ -8,9 +8,12 @@
 
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/my-bookings.css" />
+    <link rel="stylesheet" href="../css/header.css" />
   </head>
 
   <body>
+    <div id="headerContainer"></div>
+    <a class="back-btn" id="backBtn" href="./index.html">← Quay về</a>
     <section class="my-bookings">
       <h1>Đơn Đặt Lịch Của Tôi</h1>
 
@@ -29,5 +32,19 @@
     </section>
 
     <script type="module" src="../js/pages/my-bookings.js"></script>
+    <script type="module">
+      fetch("../components/header.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.querySelector("#headerContainer").innerHTML = data;
+          import("../js/components/header.js");
+
+          const backBtn = document.getElementById("backBtn");
+          try {
+            const ref = document.referrer;
+            if (ref) backBtn.href = ref;
+          } catch (e) {}
+        });
+    </script>
   </body>
 </html>

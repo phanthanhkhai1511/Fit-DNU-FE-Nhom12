@@ -41,6 +41,29 @@ th {
     color: white;
 }
 
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.pending {
+    background: #ff9800;
+    color: white;
+}
+
+.confirm {
+    background: #2196f3;
+    color: white;
+}
+
+.done {
+    background: #4caf50;
+    color: white;
+}
+
 button {
     padding: 8px 12px;
 
@@ -59,4 +82,29 @@ button {
 
 .status-btn {
     background: green;
+}
+
+.confirm-btn {
+    background: #ffc107;
+    color: #333;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.confirm-btn:hover {
+    background: #e0a800;
+    color: white;
+}
+
+.done-btn {
+    background: #28a745;
+    font-weight: 600;
+}
+
+.done-btn:hover {
+    background: #218838;
+}
+
+button:active {
+    transform: scale(0.98);
 }
