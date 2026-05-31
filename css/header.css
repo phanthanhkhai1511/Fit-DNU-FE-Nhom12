@@ -5,133 +5,118 @@
 }
 
 .header {
-
     position: fixed;
-
     top: 0;
-
     left: 0;
-
     width: 100%;
-
     z-index: 1000;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
-    padding: 20px 60px;
-
-    background:
-        rgba(0, 0, 0, 0.7);
-
-    backdrop-filter: blur(10px);
-
+    padding: 16px 40px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .logo {
-
-    font-size: 28px;
-
-    font-weight: bold;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
 }
 
 .nav-list {
-
     display: flex;
-
     align-items: center;
-
-    gap: 25px;
-
+    gap: 22px;
     list-style: none;
-}
-
-.nav-list {
     flex-wrap: wrap;
 }
 
 .nav-list a {
-
     color: white;
-
     text-decoration: none;
-
     font-weight: 600;
-
-    transition: 0.3s;
+    letter-spacing: 0.2px;
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 
-/* Ensure links never show browser default purple/underline */
 .nav-list a,
 .nav-list a:visited,
 .nav-list a:active,
-.nav-list a:focus {
-    color: white;
-    text-decoration: none;
-    outline: none;
-}
-
-/* Logo is an anchor now; style to look like plain text */
+.nav-list a:focus,
 .logo,
 .logo:visited,
 .logo:active {
     color: white;
     text-decoration: none;
+    outline: none;
 }
 
 .nav-list a:hover {
-
-    color: #00b4ff;
+    color: #60a5fa;
+    transform: translateY(-1px);
 }
 
 .logout-btn {
-
-    background: #e63946;
-
+    background: #ef4444;
     color: white;
-
     border: none;
-
     padding: 10px 18px;
-
-    border-radius: 8px;
-
+    border-radius: 999px;
     cursor: pointer;
-
-    transition: 0.3s;
+    transition: background 0.25s ease, transform 0.25s ease;
 }
 
 .logout-btn:hover {
-
-    background: #c1121f;
+    background: #dc2626;
+    transform: translateY(-1px);
 }
 
 .back-btn {
     display: inline-block;
-    margin: 90px 20px 10px 20px;
-    padding: 8px 12px;
-    background: rgba(255,255,255,0.08);
-    color: white;
+    margin: 120px auto 24px;
+    padding: 12px 18px;
+    background: #111827;
+    color: #f8fafc;
     text-decoration: none;
-    border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.18);
+    font-weight: 700;
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    z-index: 10;
 }
 
 .back-btn:hover {
-    background: rgba(255,255,255,0.12);
+    background: #1f2937;
+    transform: translateY(-2px);
+    box-shadow: 0 22px 34px rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 1024px) {
+    .header {
+        padding: 14px 24px;
+    }
+
+    .nav-list {
+        gap: 16px;
+    }
 }
 
 @media (max-width: 768px) {
     .header {
-        padding: 12px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 20px;
     }
 
     .logo {
-        font-size: 20px;
+        font-size: 22px;
+        margin-bottom: 10px;
     }
 
     .nav-list {
@@ -139,7 +124,7 @@
     }
 
     .back-btn {
-        margin-top: 70px;
-        margin-left: 12px;
+        margin-top: 110px;
+        margin-left: 14px;
     }
 }

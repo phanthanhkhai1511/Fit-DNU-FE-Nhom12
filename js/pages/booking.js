@@ -72,7 +72,7 @@ async function loadServices() {
         document.createElement("option");
 
       option.value =
-        service.name;
+        service.id;
 
       option.textContent =
         service.name;
@@ -84,7 +84,7 @@ async function loadServices() {
     if (preselectServiceId) {
       const found = services.find(s => String(s.id) === String(preselectServiceId));
       if (found) {
-        serviceSelect.value = found.name;
+        serviceSelect.value = found.id;
       }
     }
 

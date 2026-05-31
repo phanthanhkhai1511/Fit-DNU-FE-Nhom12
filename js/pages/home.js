@@ -83,6 +83,10 @@ async function loadServices(){
 
 async function loadTechnicians(){
 
+  if(!technicianList){
+    return;
+  }
+
   try{
 
     const response =
